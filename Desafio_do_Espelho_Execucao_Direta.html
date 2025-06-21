@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio do Espelho</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fff9f1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+    }
+    h1 {
+      color: #fb8c00;
+      text-align: center;
+      margin-top: 20px;
+    }
+    p {
+      color: #333;
+      text-align: center;
+      max-width: 90%;
+    }
+    video {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      border: 4px solid #ffd54f;
+      border-radius: 12px;
+      margin-top: 20px;
+      background: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Desafio do Espelho</h1>
+  <p><strong>Quem é o pedestre mais importante do trânsito?</strong></p>
+  <p>Dica: você o vê todos os dias no espelho!</p>
+  <video id="camera" autoplay playsinline muted></video>
+  <p>O trânsito começa com você!</p>
+
+  <script>
+    window.onload = function() {
+      const video = document.getElementById('camera');
+      navigator.mediaDevices.getUserMedia({
+        video: { facingMode: "user" },
+        audio: false
+      })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(err => {
+        alert("Não foi possível ativar a câmera. Verifique as permissões do navegador.");
+      });
+    };
+  </script>
+</body>
+</html>
